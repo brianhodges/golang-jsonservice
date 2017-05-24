@@ -55,12 +55,13 @@ func index(w http.ResponseWriter, r *http.Request) {
 func show(w http.ResponseWriter, r *http.Request) {
     f := strings.Trim(r.URL.String(), "/users/")
     id := strings.Trim(f, ".json")
+    
     if id != "" && validIDJsonUrl(r.URL.String()) {
         db, err := sql.Open("postgres", os.Getenv("BASIC_APP_DATABASE_URL"))
         check(err)
         defer db.Close()
     
-        rows, err := db.Query("SELECT id, email, first_name, last_name, password_salt, password_hash, role_id FROM users where id = ?", id)
+        rows, err := db.Query("SELECT id, email, first_name, last_name, password_salt, password_hash, role_id FROM users WHERE id = $1", id)
         var user user.User
         check(err)
         for rows.Next() {
