@@ -60,7 +60,7 @@ func show(w http.ResponseWriter, r *http.Request) {
         check(err)
         defer db.Close()
     
-        rows, err := db.Query("SELECT id, email, first_name, last_name, password_salt, password_hash, role_id FROM users where id = " + id)
+        rows, err := db.Query("SELECT id, email, first_name, last_name, password_salt, password_hash, role_id FROM users where id = ?", id)
         var user user.User
         check(err)
         for rows.Next() {
