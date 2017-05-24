@@ -21,7 +21,7 @@ func check(err error) {
 }
 
 func validIDJsonUrl(url string) bool {
-    Re := regexp.MustCompile(`^/users/\d.json$`)
+    Re := regexp.MustCompile(`^/users/\d*.json$`)
     return Re.MatchString(url)
 }
 
@@ -33,12 +33,12 @@ func index(w http.ResponseWriter, r *http.Request) {
         check(err)
         defer db.Close()
 
-        rows, err := db.Query("SELECT id, email, first_name, last_name FROM users")
+        rows, err := db.Query("SELECT id, email, first_name, last_name, password_salt, password_hash, role_id FROM users")
         users := []user.User{}
         check(err)
         for rows.Next() {
             var u user.User
-            err = rows.Scan(&u.ID, &u.Email, &u.First_Name, &u.Last_Name)
+            err = rows.Scan(&u.ID, &u.Email, &u.First_Name, &u.Last_Name, &u.Password_Salt, &u.Password_Hash, &u.Role_ID)
             check(err)
             users = append(users, u)
         }
@@ -60,11 +60,11 @@ func show(w http.ResponseWriter, r *http.Request) {
         check(err)
         defer db.Close()
     
-        rows, err := db.Query("SELECT id, email, first_name, last_name FROM users where id = " + id)
+        rows, err := db.Query("SELECT id, email, first_name, last_name, password_salt, password_hash, role_id FROM users where id = " + id)
         var user user.User
         check(err)
         for rows.Next() {
-            err = rows.Scan(&user.ID, &user.Email, &user.First_Name, &user.Last_Name)
+            err = rows.Scan(&user.ID, &user.Email, &user.First_Name, &user.Last_Name, &user.Password_Salt, &user.Password_Hash, &user.Role_ID)
             check(err)
         }
         
