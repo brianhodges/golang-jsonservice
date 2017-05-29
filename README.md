@@ -17,9 +17,17 @@ export PORT="8080"
   ```
 *Then simply navigate in your browser to:* 
  
+ DEVELOPMENT
+ 
  All Users -> http://localhost:8080/users.json
  
  Individual User -> http://localhost:8080/users/1.json
+ 
+ PRODUCTION (HEROKU TEST)
+ 
+ All Users -> https://golang-jsonservice.herokuapp.com/users.json
+ 
+ Individual User -> https://golang-jsonservice.herokuapp.com/users/1.json
 
 # DISCLAIMER
 Your PostgreSQL Database must have a USERS Table with matching fields.
