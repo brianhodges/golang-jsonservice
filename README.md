@@ -1,5 +1,5 @@
 # JSON Service for Heroku/PostgreSQL (Go)
-Just a project more for myself to refer back to when working on future GoLang projects. Generates .JSON services from Heroku/PostgreSQL db data.
+Just a project more for myself to refer back to when working on future GoLang projects. Generates .JSON services from Heroku/PostgreSQL db queries/data.
 
 # Setup
 ***To Run:***
@@ -17,17 +17,25 @@ export PORT="8080"
   ```
 *Then simply navigate in your browser to:* 
  
- DEVELOPMENT
+ **DEVELOPMENT**
  
- All Users -> http://localhost:8080/users.json
+ All Users -> 
  
- Individual User -> http://localhost:8080/users/1.json
+    http://localhost:8080/users.json
  
- PRODUCTION (HEROKU TEST)
+ Individual User -> 
  
- All Users -> https://golang-jsonservice.herokuapp.com/users.json
+    http://localhost:8080/users/1.json
  
- Individual User -> https://golang-jsonservice.herokuapp.com/users/1.json
+ **PRODUCTION (HEROKU)**
+ 
+ All Users -> 
+ 
+    https://golang-jsonservice.herokuapp.com/users.json
+ 
+ Individual User -> 
+ 
+    https://golang-jsonservice.herokuapp.com/users/1.json
 
 # DISCLAIMER
 Your PostgreSQL Database must have a USERS Table with matching fields.
