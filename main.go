@@ -86,7 +86,7 @@ func show(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fmt.Println("Running local server @ http://localhost:8080")
+	fmt.Println("Running local server @ http://localhost:" + os.Getenv("PORT"))
     http.HandleFunc("/users.json", index)
     http.HandleFunc("/users/", show)
     log.Fatal(http.ListenAndServe(":" + os.Getenv("PORT"), nil))
